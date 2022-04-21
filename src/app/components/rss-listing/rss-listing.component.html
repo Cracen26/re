@@ -1,0 +1,33 @@
+<table mat-table [dataSource]="fetchedData" class="mat-elevation-z8">
+
+    <ng-container matColumnDef="Image">
+        <th mat-header-cell *matHeaderCellDef> Image </th>
+        <td mat-cell *matCellDef="let element">
+            <div *ngFor="let item of element.enclosures">
+                <img src="{{item.url}}" alt="" height="40px" width="40px" srcset="">
+            </div>
+        </td>
+    </ng-container>
+    <ng-container matColumnDef="Titre">
+      <th mat-header-cell *matHeaderCellDef> Titre </th>
+      <td mat-cell *matCellDef="let element"> {{element.title | slice:0:50}} </td>
+    </ng-container>
+    
+    <ng-container matColumnDef="Description">
+      <th mat-header-cell *matHeaderCellDef> Description </th>
+      <td mat-cell *matCellDef="let element"> {{element.description | slice:0:125}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Action">
+        <th mat-header-cell *matHeaderCellDef> Action </th>
+        <td mat-cell *matCellDef="let element"><img src="../../../assets/img/eye.svg" height="30px" (click)="edit()" alt=""></td>
+    </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+
+<div class="container" style="padding: 10px;text-align: center;">
+    <button (click)="prec()" style="margin-right: 10px;" class="btn btn-danger">Precedent</button>
+    <button (click)="suiv()" class="btn btn-primary">suivant</button>
+</div>
